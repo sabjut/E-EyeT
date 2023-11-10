@@ -1,0 +1,20 @@
+[
+  {
+    "t": "I", // Type I is for IMU, but its actually only a Accelerometer
+    "i": [
+      112274, // Ticktime, time since device boot in ms
+      0,      // Unfortunaly the synchronized timestamp is missing from this data, use Ticktime to sync with AFE data
+      0,      // Status 0 = OK, 1 = error
+      5977    // Counter
+    ],
+    "v": [
+      0.029419, // X
+      8.7745,   // Y
+      3.567168, // Z
+      0.029419, // Discard this
+      8.7745,   // Discard this
+      3.567168, // Discard this
+      42.917    // Discard this
+    ]
+  }
+]

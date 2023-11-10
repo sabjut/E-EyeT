@@ -1,0 +1,136 @@
+[
+  {
+    "afe": [ // Left and right eye data in an array, index 0 is left and index 1 is right
+      {
+        "i": [
+          112267,           // Ticktime, time since device boot in ms
+          1698909803122068, // TimeStamp, synchronized time in microseconds us
+          0,                // Status 0 = OK, 1 = error
+          5968              // Counter
+        ],
+        "m": [
+          [
+            13226,  // Check the image where each index is located first 6 are the signals you want to use [0,5], And check it for the both eyes
+            4641,
+            5078,
+            11551,
+            10339,
+            18190,
+            16300, // 6, Unusable
+            13991  // 7, Unusable
+          ],
+          []
+        ],
+        "t": "L" // Type L is left eye signals
+      },
+      { // Same as in Left eye above
+        "m": [
+          [
+            10232,
+            5899,
+            7173,
+            23539,
+            15951,
+            22239,
+            7783,
+            8844
+          ],
+          []
+        ],
+        "i": [
+          112267,
+          1698909803126157,
+          0,
+          5968
+        ],
+        "t": "R"  // Type R is right eye signals
+      },
+      {},
+      {}
+    ],
+    "heart": {
+      "hr": 79,             // Current hear rate, set on every frame and repeats latest value until it updates
+      "intervals": [
+        830,                // Heart rate intervals are unique and reported here only once, otherwise omitted
+        837
+      ]
+    },
+    "gps": {                // Current GPS location
+      "latitude": 37.5322,
+      "longitude": 41.0745
+    },
+    "battery": {        // Battery
+      "voltage": 3.681,
+      "percent": 28
+    },
+    "auxSensors": {  // Auxiliary sensors
+      "lightAmbient": {
+        "t": "A",
+        "n": [      // Names and order of the values in "v", basically you can ignore these
+          1025,     // UV 1
+          1024,     // UV 0
+          1040,     // Ambient Light
+          1056      // IR 0
+        ],
+        "i": [
+          111421,           // Ticktime
+          1698909802284374, // TimeStamp
+          0,                // Status 0 = OK, 1 = error
+          22                // Counter
+        ],
+        "v": [
+          0,        // UV 1
+          5.5e-05,  // UV 0
+          18.25,    // Ambient Light
+          5.25      // IR 0
+        ],
+        "s": [      // Status of the light sensors 0 = OK, 1 = Saturated or other error
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "tempEt": {   // Temperature sensors on the frame
+        "v": [
+          26.21875,// Left eye sensors start here, first 4, [0,3], sensors are located between the sensors, so this on is between. L0-L1, check the image
+          25.335938,
+          22.203125,
+          22.335938,
+          26.242188, // Right eye sensors start here, last 4, [4,7]
+          25.125,
+          22.34375,
+          22.429688
+        ],
+        "i": [
+          111401,           // Ticktime
+          1698909802264842, // TimeStamp
+          0,                // Status 0 = OK, 1 = error
+          22                // Counter
+        ],
+        "s": [ // Status of the sensors 0 = OK, 1 = error
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": [ // Just sensor names and their order, you can ignore these
+          768, // Left eye sensors start here
+          769,
+          770,
+          771,
+          784, // Right eye sensors start here
+          785,
+          786,
+          787
+        ],
+        "t": "T"  // Type T is Temperature
+      }
+    },
+    "labels": ["Running", "Dark"] // Labels give extra information on whats going on
+  }
+]
