@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+import os
 
 useless_cols = ['afe_left_m_0_6', 'afe_left_m_0_7', ]
 
@@ -69,3 +70,22 @@ def afe_to_df(current_path):
     return df
 
 
+def fetch_full_aef_df(dir_path):
+    prefix = 'AFE'
+
+    files_starting_with_prefix = [filename for filename in os.listdir(dir_path) if filename.startswith(prefix)]
+
+
+    dfs = []
+    df = None
+
+    for ele in files_starting_with_prefix:
+        current_path = dir_path + ele
+        cur_df = afe_to_df(current_path)
+        dfs.append(cur_df)
+        if df is None:
+            df = cur_df
+        else:
+            df = pd.concat([df, cur_df])
+
+    return df
