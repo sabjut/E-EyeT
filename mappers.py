@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import os
 
-useless_cols = ['afe_left_m_0_6', 'afe_left_m_0_7', ]
+useless_cols = ['afe_left_m_0_6', 'afe_left_m_0_7', 'afe_right_m_0_6', 'afe_right_m_0_7']
 
 for i in range(8):
     useless_cols.append('auxSensors_tempEt_n_' + str(i))
