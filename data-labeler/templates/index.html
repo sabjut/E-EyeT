@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Video Selector and Marker</title>
+</head>
+
+<body>
+    <!-- Video Selector -->
+    <form id="videoForm">
+        <select name="selected_video" id="videoSelect">
+            {% for video in mp4_files %}
+            <option value="{{ video }}">{{ video }}</option>
+            {% endfor %}
+        </select>
+        <input type="button" value="Load" onclick="loadVideo()">
+    </form>
+
+    <!-- Video Player -->
+    <video id="videoPlayer" width="720" controls>
+        <!-- Video source will be set after selection -->
+    </video>
+
+    <!-- Mark Button -->
+    <div>
+        <button onclick="markTime('Non-focus')">Non-focus</button>
+        <button onclick="markTime('Driving')">Driving</button>
+        <button onclick="markTime('Reading')">Reading</button>
+        <button onclick="markTime('Working')">Working</button>
+        <p id="timeDisplay"></p>
+    </div>
+
+    <script>
+        // make video filename available to JS
+        let videoSrc = ""
+
+        function loadVideo() {
+            var videoSelect = document.getElementById('videoSelect');
+            var selectedVideo = videoSelect.value;
+
+            // Set the video source
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = `{{ url_for('static', filename='') }}` + selectedVideo;
+            videoSrc = selectedVideo;
+        }
+
+        function markTime(label) {
+            var videoPlayer = document.getElementById('videoPlayer');
+            var currentTime = videoPlayer.currentTime;
+            var videoFilename = videoPlayer.getAttribute('data-filename');
+            console.log(videoFilename);
+            document.getElementById('timeDisplay').innerText = 'Current Time: ' + currentTime.toFixed(2) + 's';
+
+            // Send the timestamp and video filename to the backend
+            fetch('/mark_time', {
+                method: 'POST',
+                body: JSON.stringify({ timestamp: currentTime, filename: videoSrc, label: label }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json())
+                .then(data => console.log('Timestamp sent:', data))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>
