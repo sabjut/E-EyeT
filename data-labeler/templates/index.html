@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html>    
 <head>
     <title>Video Selector and Marker</title>
 </head>
@@ -43,6 +42,18 @@
             videoPlayer.src = `{{ url_for('static', filename='') }}` + selectedVideo;
             videoSrc = selectedVideo;
         }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '1') {
+                markTime('Non-focus');
+            } else if (event.key === '2') {
+                markTime('Driving');
+            } else if (event.key === '3') {
+                markTime('Reading');
+            } else if (event.key === '4') {
+                markTime('Working');
+            }
+        });
 
         function markTime(label) {
             var videoPlayer = document.getElementById('videoPlayer');
