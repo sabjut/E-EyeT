@@ -26,6 +26,7 @@
         <button onclick="markTime('Driving')">Driving</button>
         <button onclick="markTime('Reading')">Reading</button>
         <button onclick="markTime('Working')">Working</button>
+        <button onclick="markTime('Blinking')">Blinking</button>
         <p id="timeDisplay"></p>
     </div>
 
@@ -52,7 +53,10 @@
                 markTime('Reading');
             } else if (event.key === '4') {
                 markTime('Working');
+            } else if (event.key === ' ') {
+                markTime('Blinking');
             }
+
         });
 
         function markTime(label) {
