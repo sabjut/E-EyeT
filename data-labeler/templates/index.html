@@ -60,7 +60,7 @@
             var currentTime = videoPlayer.currentTime;
             var videoFilename = videoPlayer.getAttribute('data-filename');
             console.log(videoFilename);
-            document.getElementById('timeDisplay').innerText = 'Current Time: ' + currentTime.toFixed(2) + 's';
+            document.getElementById('timeDisplay').innerText = 'Current Action: ' + label + '\n Current Time: ' + currentTime.toFixed(2) + 's';
 
             // Send the timestamp and video filename to the backend
             fetch('/mark_time', {
